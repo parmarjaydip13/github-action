@@ -1,0 +1,6 @@
+@github_action_HostAddress = http://localhost:5222
+
+GET {{github_action_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
