@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  github-action:
+    image: ${DOCKER_REGISTRY-}githubaction
+    build:
+      context: .
+      dockerfile: github-action/Dockerfile
+
+  redis:
+   container_name: my-redis
+   image: redis
+   ports:
+    - 6379:6379
