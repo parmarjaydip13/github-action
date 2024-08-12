@@ -4,6 +4,9 @@ using Scrutor;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//added comment
+//
+//
 builder.Services.AddScoped<IMemberRepository, MemberRepository>();
 builder.Services.Decorate<IMemberRepository, CachedMemberRepository>();
 
