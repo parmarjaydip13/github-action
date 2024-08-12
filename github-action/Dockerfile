@@ -8,9 +8,9 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["github-action/github-action.csproj" "github-action.csproj"]
+COPY "./github-action/github-action.csproj" .
 RUN dotnet restore "./github-action.csproj"
-COPY . .
+COPY ./github-action .
 RUN dotnet build "./github-action.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build as publish

@@ -20,41 +20,41 @@ public class CachedMemberRepository : IMemberRepository
     {
         string key = $"member-{id}";
 
-        string? cachedMember = await _distributedCache.GetStringAsync(
-            key,
-            cancellationToken);
+        //string? cachedMember = await _distributedCache.GetStringAsync(
+        //    key,
+        //    cancellationToken);
 
         Member? member;
-        if (string.IsNullOrEmpty(cachedMember))
-        {
-            member = await _decorated.GetByIdAsync(id, cancellationToken);
+        //if (string.IsNullOrEmpty(cachedMember))
+        //{
+        member = await _decorated.GetByIdAsync(id, cancellationToken);
 
-            if (member is null)
-            {
-                return member;
-            }
+        //    if (member is null)
+        //    {
+        //        return member;
+        //    }
 
-            await _distributedCache.SetStringAsync(
-                key,
-                JsonConvert.SerializeObject(member),
-                cancellationToken);
+        //    await _distributedCache.SetStringAsync(
+        //        key,
+        //        JsonConvert.SerializeObject(member),
+        //        cancellationToken);
 
-            return member;
-        }
+        //    return member;
+        //}
 
-        member = JsonConvert.DeserializeObject<Member>(
-            cachedMember,
-            new JsonSerializerSettings
-            {
-                ConstructorHandling =
-                    ConstructorHandling.AllowNonPublicDefaultConstructor,
-                ContractResolver = new PrivateResolver()
-            });
+        //member = JsonConvert.DeserializeObject<Member>(
+        //    cachedMember,
+        //    new JsonSerializerSettings
+        //    {
+        //        ConstructorHandling =
+        //            ConstructorHandling.AllowNonPublicDefaultConstructor,
+        //        ContractResolver = new PrivateResolver()
+        //    });
 
-        if (member is not null)
-        {
-            _dbContext.Set<Member>().Attach(member);
-        }
+        //if (member is not null)
+        //{
+        //_dbContext.Set<Member>().Attach(member);
+        //}
 
         return member;
     }
