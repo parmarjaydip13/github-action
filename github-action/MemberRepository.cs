@@ -6,6 +6,7 @@ public sealed class MemberRepository : IMemberRepository
 {
     private readonly ApplicationDbContext _dbContext;
 
+
     public MemberRepository(ApplicationDbContext dbContext) =>
         _dbContext = dbContext;
 
