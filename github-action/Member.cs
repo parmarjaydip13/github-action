@@ -2,7 +2,6 @@
 
 public sealed class Member
 {
-
     private Member(Guid id, string email, string firstName, string lastName)
     {
         Id = id;
